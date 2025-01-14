@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GuardarPostRequest;
@@ -43,6 +46,27 @@ class PostControllerCRUD extends Controller
         // 'title' => 'required|unique:posts|min:5|max:255',
         // ]);
 
+        // Post::Create([
+        //     'title' => $request->title,
+        //     'url_clean' => $request->url_clean,
+        //     'content' => $request->content,
+        //     'posted' => 'not',
+        //     'user_id' =>  User::all()->random()->id,
+        //     'category_id' => Category::all()->random()->id
+        // ]);
+
+        $post = new Post; 
+
+        $post->title = $request->title;
+        $post->url_clean = $request->url_clean;  
+        $post->content = $request->content; 
+        $post->posted = 'not'; // Por defecto las publicaciones no están posteadas, requiren de supervisión
+        $post->user_id = User::all()->random()->id; // Para que la FK user_id funcione, elegimos al azar
+        $post->category_id = Category::all()->random()->id; // Para que la FK category_id funcione, elegimos al azar
+
+        $post->save(); 
+
+        return back();
     }
 
     /**
