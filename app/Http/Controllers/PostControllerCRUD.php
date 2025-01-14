@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\GuardarPostRequest;
 
 class PostControllerCRUD extends Controller
 {
@@ -25,20 +27,20 @@ class PostControllerCRUD extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GuardarPostRequest $request)
     {
 
        echo "estoy en function store() de PostControllerCrud"; 
 
-       //  echo 'Title'.$request->input('title').'<br>';
-       //  echo 'Title'.$request->title.'<br>';
-       //  echo 'Title'.request('title'); 
+        echo 'Title'.$request->input('title').'<br>';
+        echo 'Title'.$request->title.'<br>';
+        echo 'Title'.request('title'); 
 
-       // dd($request); // Desgrana el $request y lo pinta en pantalla
+        //dd($request); // Desgrana el $request y lo pinta en pantalla
 
         // Validación de los input del formulario
         // $request->validate([
-        //     'title' => 'required|unique:posts|min:5|max:255',
+        // 'title' => 'required|unique:posts|min:5|max:255',
         // ]);
 
     }

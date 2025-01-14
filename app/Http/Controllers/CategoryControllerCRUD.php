@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\GuardarCategoryRequest;
 
 class CategoryControllerCRUD extends Controller
 {
@@ -19,15 +21,15 @@ class CategoryControllerCRUD extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create'); 
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GuardarCategoryRequest $request)
     {
-        //
+        return "Estoy en CategoryControllerCRUD->store()";
     }
 
     /**
