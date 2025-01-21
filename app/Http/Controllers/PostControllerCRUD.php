@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GuardarPostRequest;
 
@@ -16,7 +17,9 @@ class PostControllerCRUD extends Controller
      */
     public function index()
     {
-        // 
+        $posts = Post::all();
+
+        dd($posts);
     }
 
     /**
@@ -24,6 +27,10 @@ class PostControllerCRUD extends Controller
      */
     public function create()
     {
+        // $user = DB::select('select * from users');
+        // $user = DB::select('select * from users where id = ?', [1]);
+        $user = DB::table('users')->where('role', 'admin')->get();
+        dd($user);
         return view('post.create'); // Llama a la vista create.blade.php
     }
 
@@ -46,25 +53,25 @@ class PostControllerCRUD extends Controller
         // 'title' => 'required|unique:posts|min:5|max:255',
         // ]);
 
-        // Post::Create([
-        //     'title' => $request->title,
-        //     'url_clean' => $request->url_clean,
-        //     'content' => $request->content,
-        //     'posted' => 'not',
-        //     'user_id' =>  User::all()->random()->id,
-        //     'category_id' => Category::all()->random()->id
-        // ]);
+        Post::Create([
+            'title' => $request->title,
+            'url_clean' => $request->url_clean,
+            'content' => $request->content,
+            'posted' => 'not',
+            'user_id' =>  User::all()->random()->id,
+            'category_id' => Category::all()->random()->id
+        ]);
 
-        $post = new Post; 
+        // $post = new Post; 
 
-        $post->title = $request->title;
-        $post->url_clean = $request->url_clean;  
-        $post->content = $request->content; 
-        $post->posted = 'not'; // Por defecto las publicaciones no están posteadas, requiren de supervisión
-        $post->user_id = User::all()->random()->id; // Para que la FK user_id funcione, elegimos al azar
-        $post->category_id = Category::all()->random()->id; // Para que la FK category_id funcione, elegimos al azar
+        // $post->title = $request->title;
+        // $post->url_clean = $request->url_clean;  
+        // $post->content = $request->content; 
+        // $post->posted = 'not'; // Por defecto las publicaciones no están posteadas, requiren de supervisión
+        // $post->user_id = User::all()->random()->id; // Para que la FK user_id funcione, elegimos al azar
+        // $post->category_id = Category::all()->random()->id; // Para que la FK category_id funcione, elegimos al azar
 
-        $post->save(); 
+        // $post->save(); 
 
         return back();
     }
