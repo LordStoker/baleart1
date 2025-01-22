@@ -6,6 +6,7 @@
     <title>Create Category</title>
 </head>
 <body>
+    @include('components.alert') <!-- Muestra la lista de errores -->
     <h3>Create Category</h3>
     <form action="{{ route('categoryCRUD.store') }}" method="post">
 

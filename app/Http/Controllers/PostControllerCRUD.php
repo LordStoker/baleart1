@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ActualizarPostRequest;
 use App\Http\Requests\GuardarPostRequest;
 
 class PostControllerCRUD extends Controller
@@ -18,8 +19,7 @@ class PostControllerCRUD extends Controller
     public function index()
     {
         $posts = Post::all();
-
-        dd($posts);
+        return view ('post.index', ['posts' => $posts]);
     }
 
     /**
@@ -29,8 +29,8 @@ class PostControllerCRUD extends Controller
     {
         // $user = DB::select('select * from users');
         // $user = DB::select('select * from users where id = ?', [1]);
-        $user = DB::table('users')->where('role', 'admin')->get();
-        dd($user);
+        // $user = DB::table('users')->where('role', 'admin')->get();
+        // dd($user);
         return view('post.create'); // Llama a la vista create.blade.php
     }
 
@@ -73,38 +73,61 @@ class PostControllerCRUD extends Controller
 
         // $post->save(); 
 
-        return back();
+        // return back()->with('status', 'Post creado con éxito');
+        return redirect()->route('postCRUD.index')->with('status', '<h1>Post creado con éxito</h1>');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    // public function show(string $id)
+    // {
+    //     // $post=Post::find($id);
+    //     $post=Post::findorfail($id);
+
+    //     return view('post.show', ['post' => $post]);
+    // }
+
+    public function show(Post $postCRUD)
     {
-        //
+        // $post=Post::find($id);
+        
+        return view('post.show', ['post' => $postCRUD]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $postCRUD)
+
     {
-        //
+        return view('post.edit', ['post' => $postCRUD]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ActualizarPostRequest $request, Post $postCRUD)
     {
-        //
+        // $postCRUD->title = $request->title;
+        // $postCRUD->url_clean = $request->url_clean;
+        // $postCRUD->content = $request->content;
+
+        // $postCRUD->update();
+
+        $postCRUD->update($request->all());
+
+        // return view('post.show', ['post' => $postCRUD]);
+        return back();
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $postCRUD)
     {
-        //
+        $postCRUD->delete();
+        return back()->with('status', 'Post eliminado con éxito');
     }
 }

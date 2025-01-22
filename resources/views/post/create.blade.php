@@ -7,14 +7,7 @@
 </head>
 <body>    
 
-
-    @if(count($errors->all()) === 1)
-        <h2>Tenim 1 error</h2>
-    @elseif(count($errors->all()) > 1)
-        <h2>Tenim multiples errors</h2>
-    @else
-        <h2>No tenim errors</h2>
-    @endif
+    @include('components.alert')
 
 
     @if ($errors->any())

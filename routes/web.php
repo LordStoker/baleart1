@@ -24,69 +24,69 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/hola', function () {
-    return '<h1>Hola mundo</h1>';
-});
+// Route::get('/hola', function () {
+//     return '<h1>Hola mundo</h1>';
+// });
 
-Route::get('index.html', function () {
-    $html_code = '<!DOCTYPE html>
-    <html>
-        <head>
-            <title>Laravel</title>
-        </head>
-        <body>
-            <h1>Hola mundo html</h1>
-        </body>
-    </html>';
-    return $html_code;
-});
+// Route::get('index.html', function () {
+//     $html_code = '<!DOCTYPE html>
+//     <html>
+//         <head>
+//             <title>Laravel</title>
+//         </head>
+//         <body>
+//             <h1>Hola mundo html</h1>
+//         </body>
+//     </html>';
+//     return $html_code;
+// });
 
-Route::get('/hola/{name}', function ($name) {
-    $html_code = '<h1>Hola '.$name.'</h1>';
-    return $html_code;
-});
+// Route::get('/hola/{name}', function ($name) {
+//     $html_code = '<h1>Hola '.$name.'</h1>';
+//     return $html_code;
+// });
 
-Route::get('hola2/{nom}', function($nom){
-    $html_code = '<!DOCTYPE html>
-    <html>
-        <head>
-            <title>Laravel</title>
-        </head>
-        <body>
-            <h1>Hola '.$nom.'</h1>
-        </body>';
-    return $html_code;
-}); 
+// Route::get('hola2/{nom}', function($nom){
+//     $html_code = '<!DOCTYPE html>
+//     <html>
+//         <head>
+//             <title>Laravel</title>
+//         </head>
+//         <body>
+//             <h1>Hola '.$nom.'</h1>
+//         </body>';
+//     return $html_code;
+// }); 
 
-Route::get('hola3/{nom}/{professio}', function($nom, $professio){
-    $html_code = '<!DOCTYPE html>
-    <html>
-        <head>
-            <title>Laravel</title>
-        </head>
-        <body>
-            <h1>Hola '.$nom.'</h1>
-            <p>Professió: '.$professio.'</p>
-        </body>';
-    return $html_code;
-});
+// Route::get('hola3/{nom}/{professio}', function($nom, $professio){
+//     $html_code = '<!DOCTYPE html>
+//     <html>
+//         <head>
+//             <title>Laravel</title>
+//         </head>
+//         <body>
+//             <h1>Hola '.$nom.'</h1>
+//             <p>Professió: '.$professio.'</p>
+//         </body>';
+//     return $html_code;
+// });
 
-Route::get('/usuaris/{usuari}', function(User $usuari){
-    return $usuari; 
-});
+// Route::get('/usuaris/{usuari}', function(User $usuari){
+//     return $usuari; 
+// });
 
-Route::get('/posts/{post}', function(Post $post){
-    return $post; 
-});
+// Route::get('/posts/{post}', function(Post $post){
+//     return $post; 
+// });
 
-Route::get('/categories/{category}', function(Category $category){
-    return $category;
-}); 
+// Route::get('/categories/{category}', function(Category $category){
+//     return $category;
+// }); 
 
 
-Route::get('/perfilview/{nom}', function($nom){
-    return view('perfil', ['nom' => $nom]);
-});
+// Route::get('/perfilview/{nom}', function($nom){
+//     return view('perfil', ['nom' => $nom]);
+// });
 
 /// EJERCICIO: De la misma manera, codificar una para cada Model
 
